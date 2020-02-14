@@ -1,28 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app id="app">
+    <Navbar v-if="this.$route.path != '/login'"/>
+    <NavbarLog v-if="this.$route.path == '/login'"/>
+
+    <v-content>
+      <router-view/>
+    </v-content>
+    <Footer/>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld';
 
+import Navbar from "@/components/Navbar";
+import NavbarLog from "@/components/NavbarLog";
+import Footer from "@/components/Footer";
 export default {
   name: 'App',
+
   components: {
-    HelloWorld
-  }
-}
+    Footer,
+    Navbar,
+    NavbarLog
+    // HelloWorld,
+  },
+
+  data: () => ({
+    //
+  }),
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,800&display=swap');
+    #app {
+        font-family: 'Open Sans', sans-serif;
+    }
 </style>
